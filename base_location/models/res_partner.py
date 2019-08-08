@@ -38,7 +38,6 @@ class ResPartner(models.Model):
 
     @api.onchange('zip_id')
     def _onchange_zip_id(self):
-        raise Warning(_("test message"))
         if self.zip_id:
             vals = {
                 'city_id': self.zip_id.city_id,
@@ -51,13 +50,14 @@ class ResPartner(models.Model):
                 vals.update({'state_id': self.zip_id.city_id.state_id})
             self.update(vals)
         if not self.zip_id:
-            vals = {}
-            vals.update({
-                'zip_id': False,
-                'zip': False,
-                'city': False,
-            })
-            self.update(vals)
+            #vals = {}
+            #vals.update({
+            #    'zip_id': False,
+            #    'zip': False,
+            #    'city': False,
+            #})
+            #self.update(vals)
+            raise Warning(_("test message"))
 
     @api.constrains('zip_id', 'country_id', 'city_id', 'state_id')
     def _check_zip(self):
