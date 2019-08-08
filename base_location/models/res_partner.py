@@ -49,6 +49,14 @@ class ResPartner(models.Model):
             if self.zip_id.city_id.state_id:
                 vals.update({'state_id': self.zip_id.city_id.state_id})
             self.update(vals)
+        if not self.zip_id:
+            vals = {}
+            vals.update({
+                'zip_id': False,
+                'zip': False,
+                'city': False,
+            })
+            self.update(vals)
 
     @api.constrains('zip_id', 'country_id', 'city_id', 'state_id')
     def _check_zip(self):
