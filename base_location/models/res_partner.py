@@ -38,6 +38,7 @@ class ResPartner(models.Model):
 
     @api.onchange('zip_id')
     def _onchange_zip_id(self):
+        raise Warning(_("test message"))
         if self.zip_id:
             vals = {
                 'city_id': self.zip_id.city_id,
